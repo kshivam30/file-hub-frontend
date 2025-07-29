@@ -90,10 +90,10 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
 
   return (
     <div className="bg-white shadow rounded-lg p-4 mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Search by filename */}
-        <div>
-          <label htmlFor="search" className="block text-sm font-medium text-gray-700">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
             Search by filename
           </label>
           <input
@@ -101,21 +101,21 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
             id="search"
             value={localFilters.search}
             onChange={handleSearchChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
             placeholder="Search files..."
           />
         </div>
 
         {/* File type filter */}
         <div>
-          <label htmlFor="fileType" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="fileType" className="block text-sm font-medium text-gray-700 mb-1">
             File type
           </label>
           <select
             id="fileType"
             value={localFilters.fileType}
             onChange={handleFileTypeChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
           >
             <option value="">All types</option>
             {availableFileTypes.map((type) => (
@@ -128,13 +128,13 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
 
         {/* Size range filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Size range (KB)</label>
-          <div className="mt-1 flex space-x-2">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Size range (KB)</label>
+          <div className="flex space-x-2">
             <input
               type="number"
               value={localFilters.sizeRange.min === 0 ? '' : localFilters.sizeRange.min}
               onChange={(e) => handleSizeRangeChange('min', e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
               placeholder="Min"
               min="0"
             />
@@ -142,7 +142,7 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
               type="number"
               value={localFilters.sizeRange.max === Infinity ? '' : localFilters.sizeRange.max}
               onChange={(e) => handleSizeRangeChange('max', e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
               placeholder="Max"
               min="0"
             />
@@ -151,19 +151,19 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
 
         {/* Date range filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Upload date range</label>
-          <div className="mt-1 flex space-x-2">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Upload date range</label>
+          <div className="flex space-x-2">
             <input
               type="date"
               value={localFilters.dateRange.start}
               onChange={(e) => handleDateRangeChange('start', e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
             />
             <input
               type="date"
               value={localFilters.dateRange.end}
               onChange={(e) => handleDateRangeChange('end', e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm py-2 px-3"
             />
           </div>
         </div>

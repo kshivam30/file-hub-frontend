@@ -34,7 +34,7 @@ export const StorageStats: React.FC = () => {
   return (
     <div className="bg-white shadow rounded-lg p-4 mb-6">
       <h3 className="text-lg font-medium text-gray-900 mb-4">Storage Statistics</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Storage Savings Card */}
         <div className="bg-green-50 rounded-lg p-4">
           <div className="flex items-center">
@@ -42,7 +42,7 @@ export const StorageStats: React.FC = () => {
             <h4 className="ml-2 text-sm font-medium text-green-800">Storage Saved</h4>
           </div>
           <div className="mt-2">
-            <p className="text-2xl font-semibold text-green-900">
+            <p className="text-xl sm:text-2xl font-semibold text-green-900">
               {formatSize(stats.storage_saved)}
             </p>
             <p className="text-sm text-green-600">
@@ -76,7 +76,7 @@ export const StorageStats: React.FC = () => {
         </div>
 
         {/* Storage Usage Card */}
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-4 sm:col-span-2 lg:col-span-1">
           <div className="flex items-center">
             <ServerIcon className="h-6 w-6 text-purple-600" />
             <h4 className="ml-2 text-sm font-medium text-purple-800">Storage Usage</h4>
@@ -89,25 +89,11 @@ export const StorageStats: React.FC = () => {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-purple-600">Actual Storage:</span>
+              <span className="text-sm text-purple-600">Actual Used:</span>
               <span className="text-sm font-medium text-purple-900">
                 {formatSize(stats.actual_storage_used)}
               </span>
             </div>
-          </div>
-          {/* Storage Usage Bar */}
-          <div className="mt-3">
-            <div className="w-full bg-purple-200 rounded-full h-2">
-              <div
-                className="bg-purple-600 h-2 rounded-full"
-                style={{
-                  width: `${100 - stats.storage_saved_percentage}%`,
-                }}
-              ></div>
-            </div>
-            <p className="mt-1 text-xs text-purple-600 text-right">
-              {(100 - stats.storage_saved_percentage).toFixed(1)}% of potential storage used
-            </p>
           </div>
         </div>
       </div>

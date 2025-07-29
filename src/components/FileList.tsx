@@ -125,31 +125,33 @@ export const FileList: React.FC = () => {
           <ul className="-my-5 divide-y divide-gray-200">
             {files.map((file) => (
               <li key={file.uuid} className="py-4">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0">
-                    <DocumentIcon className="h-8 w-8 text-gray-400" />
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                  <div className="flex items-center space-x-3 flex-1 min-w-0">
+                    <div className="flex-shrink-0">
+                      <DocumentIcon className="h-8 w-8 text-gray-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">
+                        {file.original_filename}
+                        {file.upload_count > 1 && (
+                          <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            {file.upload_count}x uploaded
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {file.mime_type} • {(file.file_size / 1024).toFixed(2)} KB
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Last modified {new Date(file.last_accessed).toLocaleString()}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {file.original_filename}
-                      {file.upload_count > 1 && (
-                        <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          {file.upload_count}x uploaded
-                        </span>
-                      )}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {file.mime_type} • {(file.file_size / 1024).toFixed(2)} KB
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Last modified {new Date(file.last_accessed).toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
                     <button
                       onClick={() => handleDownload(file.file, file.original_filename)}
                       disabled={downloadMutation.isPending}
-                      className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                      className="inline-flex items-center justify-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 w-full sm:w-auto"
                     >
                       <ArrowDownTrayIcon className="h-4 w-4 mr-1" />
                       Download
@@ -157,7 +159,7 @@ export const FileList: React.FC = () => {
                     <button
                       onClick={() => handleDelete(file.uuid)}
                       disabled={deleteMutation.isPending}
-                      className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      className="inline-flex items-center justify-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 w-full sm:w-auto"
                     >
                       <TrashIcon className="h-4 w-4 mr-1" />
                       Delete
