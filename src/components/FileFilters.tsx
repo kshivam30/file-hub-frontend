@@ -16,9 +16,18 @@ export const FileFilterPanel: React.FC<FileFiltersProps> = ({
   // Local state to track input values
   const [localFilters, setLocalFilters] = useState(filters);
 
-  // Update local filters when prop filters change
+  // Update local filters when prop filters change, but only if values actually differ
   useEffect(() => {
-    setLocalFilters(filters);
+    if (
+      filters.search !== localFilters.search ||
+      filters.fileType !== localFilters.fileType ||
+      filters.sizeRange.min !== localFilters.sizeRange.min ||
+      filters.sizeRange.max !== localFilters.sizeRange.max ||
+      filters.dateRange.start !== localFilters.dateRange.start ||
+      filters.dateRange.end !== localFilters.dateRange.end
+    ) {
+      setLocalFilters(filters);
+    }
   }, [filters]);
 
   // Debounced filter change handler

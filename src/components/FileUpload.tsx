@@ -78,7 +78,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onUploadSuccess }) => {
         </div>
         {selectedFile && (
           <div className="text-sm text-gray-600">
-            Selected: {selectedFile.name}
+            <span className="font-bold">Selected: {selectedFile.name}</span>
           </div>
         )}
         {error && (
